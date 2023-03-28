@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const {createUser,deleteUser,updateUser } = require('../models/users')
+const {createUser,deleteUser,updateUser, getUserByEmail } = require('../models/users')
 
 
-const { getUserByEmail} = require('../controllers/apiUsersControllers')
 
-router.get('/', getUserByEmail)
+
+router.get('/:email', getUserByEmail)
 
 router.post('/', createUser)
 

@@ -9,6 +9,40 @@ const pool = new Pool({
   password: 'admin'
 })
 
+const getUserByEmail = async (req, res) => {
+  let client,data
+  const email = req.params.email
+
+          try {
+              client = await pool.connect()
+              data = await client.query(queries.getUserEmail, [email])
+              console.log(data.rows.length)
+              if (data.rows.length != 0) {
+                console.log('paso1')
+                res.status(200).json({
+                  ok: true,
+                  msg: `El usuario con email ${email} ha sido encontrado`,
+                  data:data.rows
+              })
+              } else {
+                console.log('paso2')
+                res.status(404).json({
+                  ok: false,
+                  msg: `No se ha encontrado el usuario`,
+              })
+              }
+              
+          } catch (error) {
+              res.status(500).json({
+                  ok: false,
+                  msg: `meh`,
+                  error
+              })
+          } finally {
+              client.release()
+          }
+      }
+
 const createUser = async (req, res) => {
     let client, respuesta;
     let { name, password, email } = req.body
@@ -58,8 +92,8 @@ const deleteUser = async (req, res) => {
 
 const checkMovie = async (req, res) => {
   let client, data
-  let idUser = req.query.idUser
-  let idMovie = req.query.idFilm
+  let idUser = req.body.idUser
+  let idMovie = req.params.id
   console.log(idUser, idMovie)
   try {
     client = await pool.connect()
@@ -117,8 +151,8 @@ const addMovieConnect = async (req,res) => {
 
 const removeMovie = async (req,res) => {
   
-  const idUser = req.params.idUser
-  const idMovie = req.body.idFilms
+  const idUser = req.body.idUser
+  const idMovie = req.params.id
   let data,client
   try {
       client = await pool.connect()
@@ -194,5 +228,6 @@ module.exports = {
   addMovieConnect,
   createUser,
   deleteUser,
-  updateUser
+  updateUser,
+  getUserByEmail
 }
