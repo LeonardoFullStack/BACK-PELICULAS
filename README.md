@@ -15,7 +15,7 @@ PUT http://localhost:3000/api/peliculas/ID  Actualizar pelicula
 "http://localhost:3000/admin/editMovie/<%=${pelicula.peliculaEncontrada._id}%>" 
 
 
-RUTAS POSTMAN USUARIOS:
+RUTAS POSTMAN USUARIOS:  
 GET  http://localhost:3000/api/apiUsers/:email obtener usuario   
 
 POST http://localhost:3000/api/apiUsers CREAR USUARIO  
@@ -26,7 +26,7 @@ body, email viejo por parámetros)
 DELETE http://localhost:3000/api/apiUsers/:email eliminar usuario  
 
 
-RUTAS POSTMAN películas de usuarios :
+RUTAS POSTMAN películas de usuarios :  
 GET http://localhost:3000/api/apiUsers/films/:id capturar película de usuarios (id película por parámetros, idUser por req.body)  
 
 POST http://localhost:3000/api/apiUsers/films/ añadir película a usuarios(7 parámetros por req.body: idUser,title,idFilm,genres,year,runtimeStr,directors)  
