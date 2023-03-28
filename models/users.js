@@ -10,22 +10,24 @@ const pool = new Pool({
 })
 
 const getUserByEmail = async (req, res) => {
+ 
   let client,data
   const email = req.params.email
 
           try {
               client = await pool.connect()
               data = await client.query(queries.getUserEmail, [email])
-              console.log(data.rows.length)
+              console.log(data.rows)
               if (data.rows.length != 0) {
-                console.log('paso1')
+                
                 res.status(200).json({
                   ok: true,
                   msg: `El usuario con email ${email} ha sido encontrado`,
                   data:data.rows
               })
+              console.log('paso2')
               } else {
-                console.log('paso2')
+                
                 res.status(404).json({
                   ok: false,
                   msg: `No se ha encontrado el usuario`,
