@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const{check}=require('express-validator');
 const{validarInputs}=require('../middleware/validarInputs')
 
 const { getPeliculas,crearPelicula,actualizarPelicula,eliminarPelicula,getPelicula } = require('../controllers/apiControllers')
