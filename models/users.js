@@ -47,8 +47,9 @@ const getUserByEmail = async (req, res) => {
 
 const createUser = async (req, res) => {
     let client, respuesta;
-    let { name, password, email } = req.body
-    const isAdmin = false;
+    let { name, password, email, isAdmin } = req.body
+    console.log(isAdmin)
+
     try {
         client = await pool.connect()
         const data = await client.query(queries.createUser, [name, password, email, isAdmin])
