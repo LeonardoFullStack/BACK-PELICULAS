@@ -10,7 +10,7 @@ const pool = new Pool({
 })
 
 const getUserByEmail = async (req, res) => {
- 
+
   let client,data
   const email = req.params.email
 
@@ -93,6 +93,7 @@ const deleteUser = async (req, res) => {
 }
 
 const checkMovie = async (req, res) => {
+  console.log('paso')
   let client, data
   let idUser = req.body.idUser
   let idMovie = req.params.id
@@ -123,8 +124,35 @@ const checkMovie = async (req, res) => {
 
 }
 
+const checkMovies = async (req,res) => {
+  let data,client
+ const id = req.params.idUser
+  try {
+    client = await pool.connect()
+
+    data = await client.query(queries.myMovies, [id])
+
+    res.status(200).json({
+      ok: true,
+      msg: `Todas las películas del usuario con id ${id}`,
+      data:data.rows
+    })
+
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      msg: 'error al buscar las películas'
+    })
+  } finally {
+
+    client.release()
+  }
+
+
+}
+
 const addMovieConnect = async (req,res) => {
-  console.log('holi')
+
   let data, client
   const {idUser,title,idFilm,genres,year,runtimeStr,directors} = req.body
   console.log(req.body)
@@ -231,5 +259,6 @@ module.exports = {
   createUser,
   deleteUser,
   updateUser,
-  getUserByEmail
+  getUserByEmail,
+  checkMovies
 }
