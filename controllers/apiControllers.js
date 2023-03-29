@@ -126,6 +126,31 @@ const eliminarPelicula= async(req,res)=>{
     }
 }
 
+const getPeliculaTitulo= async(req,res)=>{
+    const titulo=req.params.titulo
+    console.log(titulo);
+    try {
+        const unaPeliculaTitulo=await Pelicula.find({title:titulo})
+        if(!unaPeliculaTitulo){
+            return res.status(404).json({
+                ok:false,
+                msg:'el titulo esta mal '
+            })
+        }else{
+             return  res.status(200).json({
+                ok:true,
+                msg:'Obteniendo una pelicula ',
+                peliculaEncontrada:unaPeliculaTitulo
+        })
+        }
+    } catch (error) {
+        return  res.status(500).json({
+            ok:false,
+            msg:'Error al obtener el servicio solicitado'
+        })
+    }
+}
+
 
 
 
@@ -136,5 +161,5 @@ module.exports={
     getPelicula,
     crearPelicula,
     actualizarPelicula,
-    eliminarPelicula
+    eliminarPelicula,
 }

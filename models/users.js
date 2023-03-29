@@ -155,13 +155,13 @@ const checkMovies = async (req,res) => {
 const addMovieConnect = async (req,res) => {
 
   let data, client
-  const {idUser,title,idFilm,genres,year,runtimeStr,directors} = req.body
+  const {idUser,title,idFilm,genres,year,image,runtimeStr,directors} = req.body
   console.log(req.body)
 
   try {
     client = await pool.connect()
 
-    data = await client.query(queries.addMovie, [idFilm, idUser, title, genres, year, runtimeStr, directors])
+    data = await client.query(queries.addMovie, [idFilm, idUser, title,image, genres, year, runtimeStr, directors])
     console.log(data)
     res.status(200).json({
       ok: true,

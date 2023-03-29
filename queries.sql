@@ -4,11 +4,11 @@ CREATE TABLE users (
   name varchar(45) NOT NULL, 
   password varchar(255) NOT NULL, 
   email varchar(100) NOT NULL UNIQUE,
-  image varchar(255)
+  isAdmin boolean
 );
 --TITULO IMAGEN GENERO AÑO DURACION DIRECTOR
 CREATE TABLE favs (
-  id serial NOT NULL PRIMARY KEY
+  id serial NOT NULL PRIMARY KEY,
   idfilms varchar(45) NOT NULL,
   idUsers int NOT NULL  , 
   title varchar(45) NOT NULL,
