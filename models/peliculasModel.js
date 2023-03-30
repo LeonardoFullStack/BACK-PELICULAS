@@ -1,6 +1,7 @@
 const {Schema,model } = require("mongoose");
 
 const PeliculaSchema=new Schema({
+
     title: {
         type:String,
         required:true,
@@ -13,18 +14,33 @@ const PeliculaSchema=new Schema({
         type:Number,
         required:true,
     },
-    director:{
+    directors:{
         type:String,
         required:true,
-     }
-    // genero:{
-    //     type:String,
-    //     required:true,
-    // },
-    // fecha:{
-    //     type:Date,
-    //     default:Date.now
-    // }
+     },
+    genres:{
+        type:String,
+        required:true,
+    },
+    actores:{
+        type:String,
+        required:true,
+    },
+    rating:{
+        type:Number,
+        required:true,
+    },
+    sinopsis:{
+        type:String,
+        required:false,
+    },
+    runtimeStr:{
+        type:Number,
+        required:true,
+    }
+
+
+    
 })
 
 
