@@ -10,9 +10,11 @@ router.get('/', getPeliculas)      //* GET
 
 router.get('/:id',getPelicula)
 
+
 router.get('/titulo/:titulo',getPeliculaTitulo)
 
 router.post('/', crearPelicula)                                //*POST
+
 
 router.put('/:id' ,    actualizarPelicula)//* PUT
     

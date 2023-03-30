@@ -131,9 +131,9 @@ const getPeliculaTitulo= async(req,res)=>{
     const titulo=req.params.titulo
     
     try {
+
         
         const unaPeliculaTitulo=await Pelicula.find({title:{$regex:`${titulo}`}})
-
         if(!unaPeliculaTitulo){
             return res.status(404).json({
                 ok:false,
@@ -159,6 +159,8 @@ const getPeliculaTitulo= async(req,res)=>{
 
 
 
+
+
 module.exports={
     getPeliculas,
     getPelicula,
@@ -166,4 +168,5 @@ module.exports={
     crearPelicula,
     actualizarPelicula,
     eliminarPelicula,
+    getPeliculaTitulo
 }

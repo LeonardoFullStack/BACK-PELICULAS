@@ -36,11 +36,12 @@ const PeliculaSchema=new Schema({
     },
     runtimeStr:{
         type:Number,
-        required:true,
+        required:true
     }
 
 
     
+
 })
 
 
