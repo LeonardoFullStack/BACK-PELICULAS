@@ -16,15 +16,27 @@ const PeliculaSchema=new Schema({
     director:{
         type:String,
         required:true,
-     }
-    // genero:{
-    //     type:String,
-    //     required:true,
-    // },
-    // fecha:{
-    //     type:Date,
-    //     default:Date.now
-    // }
+     },
+    genero:{
+        type:String,
+        required:true,
+    },
+    actores:{
+        type:String,
+        required:true,
+    },
+    rating:{
+        type:Number,
+        required:true,
+    },
+    sinopsis:{
+        type:String,
+        required:false,
+    },
+    duracion:{
+        type:Number,
+        required:true,
+    }
 })
 
 

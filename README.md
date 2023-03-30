@@ -27,7 +27,7 @@ DELETE http://localhost:3000/api/apiUsers/:email eliminar usuario
 
 
 RUTAS POSTMAN películas de usuarios :  
-GET http://localhost:3000/api/apiUsers/films/:id capturar película de usuarios (id película por parámetros, idUser por req.body)  
+GET http://localhost:3000/api/apiUsers/films/userFilms/:id capturar película de usuarios (id película por parámetros, idUser por req.body)  
 
 POST http://localhost:3000/api/apiUsers/films/ añadir película a usuarios(7 parámetros por req.body: idUser,title,idFilm,genres,year,runtimeStr,directors)  
 

@@ -6,12 +6,23 @@ const {createUser,deleteUser,updateUser, getUserByEmail } = require('../models/u
 
 
 router.get('/:email', getUserByEmail)
+router.post('/',/* [
+    check('name','Tienes que poner un nombre').not().isEmpty(),
+    check('email', 'el email no es válido').not().isEmpty().isEmail(),
+    check('pass', 'La contraseña tiene que tener mínimo 4 caracteres').isLength({min:4}),
+    validarInputs
+], */ createUser)
 
-router.post('/', createUser)
-
-router.delete('/:email', deleteUser)
-
-router.put('/:email', updateUser)
+router.delete('/:email',/*  [
+    check('email', 'el email no es válido').not().isEmpty().isEmail(),
+    validarInputs
+], */ deleteUser)
+router.put('/:email',/* [
+    check('name','Tienes que poner un nombre').not().isEmpty(),
+    check('email', 'el email no es válido').not().isEmpty().isEmail(),
+    check('pass', 'La contraseña tiene que tener mínimo 4 caracteres').isLength({min:4}),
+    validarInputs
+], */ updateUser)
 
 
 

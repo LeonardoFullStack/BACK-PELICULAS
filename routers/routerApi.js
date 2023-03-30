@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 
-const { getPeliculas,crearPelicula,actualizarPelicula,eliminarPelicula,getPelicula } = require('../controllers/apiControllers')
+const { getPeliculas,crearPelicula,actualizarPelicula,eliminarPelicula,getPelicula,getPeliculaTitulo } = require('../controllers/apiControllers')
 
 
 
@@ -10,7 +10,10 @@ router.get('/', getPeliculas)      //* GET
 
 router.get('/:id',getPelicula)
 
-router.post('/', crearPelicula)                                //*POST
+router.post('/', crearPelicula)      
+
+router.get('/titulo/:titulo',getPeliculaTitulo)
+
 
 router.put('/:id' ,    actualizarPelicula)//* PUT
     

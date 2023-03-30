@@ -9,10 +9,11 @@ const pool = new Pool({
   password: 'admin'
 })
 
-const getUserByEmail = async (req, res) => {
+const getUserByEmail = async (req, res) => {  //envía datos de un usuario por el mail
 
   let client,data
   const email = req.params.email
+  console.log(email)
 
           try {
               client = await pool.connect()
@@ -46,6 +47,7 @@ const getUserByEmail = async (req, res) => {
       }
 
 const createUser = async (req, res) => {
+  console.log('youyou')
     let client, respuesta;
     let { name, password, email, isAdmin } = req.body
     console.log(isAdmin)
@@ -71,7 +73,7 @@ const createUser = async (req, res) => {
    
 }
 
-const deleteUser = async (req, res) => {
+const deleteUser = async (req, res) => { // borra un usuario por el email
   let data, client
   let email = req.params.email
   try {
@@ -93,7 +95,8 @@ const deleteUser = async (req, res) => {
 
 }
 
-const checkMovie = async (req, res) => {
+const checkMovie = async (req, res) => {// busca una película en concreto en la tabla del usuario
+                                        //para no añadir dos veces la misma película
   console.log('paso')
   let client, data
   let idUser = req.body.idUser
@@ -125,7 +128,7 @@ const checkMovie = async (req, res) => {
 
 }
 
-const checkMovies = async (req,res) => {
+const checkMovies = async (req,res) => { // envía todas las películas de un usuario por su id
   let data,client
  const id = req.params.idUser
   try {
@@ -151,12 +154,12 @@ const checkMovies = async (req,res) => {
 
 
 }
-
-const addMovieConnect = async (req,res) => {
+// falta gestionar el   hecho de que tenga ya la película
+const addMovieConnect = async (req,res) => { // añade una película a la tabla de favoritos del usuario
 
   let data, client
   const {idUser,title,idFilm,genres,year,image,runtimeStr,directors} = req.body
-  console.log(req.body)
+  console.log(req.body,'erbody')
 
   try {
     client = await pool.connect()
@@ -180,10 +183,11 @@ const addMovieConnect = async (req,res) => {
   
 }
 
-const removeMovie = async (req,res) => {
+const removeMovie = async (req,res) => { // elimina la película de la tabla del usuario
   
   const idUser = req.body.idUser
   const idMovie = req.params.id
+  console.log(idMovie, idUser)
   let data,client
   try {
       client = await pool.connect()
@@ -192,6 +196,10 @@ const removeMovie = async (req,res) => {
       res.status(200).json({
         ok: true,
         msg: 'la pelicula se ha eliminado de favoritos',
+        data: {
+          idUser,
+          idMovie
+        }
       })
   } catch (error) {
     res.status(200).json({
@@ -207,7 +215,7 @@ const removeMovie = async (req,res) => {
 
 
 //falta gestión de errores, y no repetir peliculas. Y corregir el redirect
-const addMovie = async (req, res) => {
+/* const addMovie = async (req, res) => {// esta creo que no se usa
 
   const idMovie = req.params.id
   const idUsers = req.header.id
@@ -223,9 +231,9 @@ const addMovie = async (req, res) => {
   }
 
   res.redirect('/movies')
-}
+} */
 
-const updateUser = async (req,res) => {
+const updateUser = async (req,res) => { // modifica el usuario, para el recuperar contraseña
   const emailViejo = req.params.email
   const { name, password, email} = req.body
   let data, client
@@ -254,12 +262,11 @@ const updateUser = async (req,res) => {
 
 module.exports = {
   removeMovie,
-  addMovie,
   checkMovie,
   addMovieConnect,
-  createUser,
   deleteUser,
   updateUser,
   getUserByEmail,
-  checkMovies
+  checkMovies,
+  createUser
 }
