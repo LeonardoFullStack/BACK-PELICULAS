@@ -13,10 +13,10 @@ router.get('/:id',getPelicula)
 
 router.get('/titulo/:titulo',getPeliculaTitulo)
 
-router.post('/', crearPelicula)                                //*POST
+router.post('/', crearPelicula)   //*POST
 
 
-router.put('/:id' ,    actualizarPelicula)//* PUT
+router.put('/:id' , actualizarPelicula)//* PUT
     
  router.delete('/:id', eliminarPelicula) //* DELETE
 

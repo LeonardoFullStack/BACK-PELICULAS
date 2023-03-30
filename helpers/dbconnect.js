@@ -4,7 +4,7 @@ const conexion = async () => {
     
     try {
         
-        const respuesta=await mongoos                                                                                           .connect(process.env.URI_CONECT)
+        const respuesta=await mongoose.connect(process.env.URI_CONECT)
         console.log("conectado a la base de datos");
         return respuesta
 

@@ -22,10 +22,10 @@ const getPeliculas=async(req,res)=>{
 const getPelicula= async(req,res)=>{
     
     const id=req.params.id
-
+    console.log(id)
     try {
         const unaPelicula=await Pelicula.findById(id) 
-
+        console.log(unaPelicula)
         if(!unaPelicula){
             return res.status(404).json({
                 ok:false,
@@ -129,7 +129,7 @@ const eliminarPelicula= async(req,res)=>{
 const getPeliculaTitulo= async(req,res)=>{
 
     const titulo=req.params.titulo
-    
+    console.log(titulo)
     try {
 
         
