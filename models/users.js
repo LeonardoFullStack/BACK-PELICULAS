@@ -214,25 +214,6 @@ const removeMovie = async (req,res) => { // elimina la película de la tabla del
 }
 
 
-//falta gestión de errores, y no repetir peliculas. Y corregir el redirect
-/* const addMovie = async (req, res) => {// esta creo que no se usa
-
-  const idMovie = req.params.id
-  const idUsers = req.header.id
-  console.log(idMovie, idUsers)
-  const checkMovieOne = await checkMovie(idUsers, idMovie)
-  if (checkMovieOne.length == 0) {
-    const peticion = await consulta(null, idMovie)
-    const { title, image, genres, year, runtimeStr, directors } = peticion
-    const data = await addMovieConnect(idMovie, idUsers, title, image, genres, year, runtimeStr, directors)
-
-  } else {
-    //aqui ya tiene la película
-  }
-
-  res.redirect('/movies')
-} */
-
 const updateUser = async (req,res) => { // modifica el usuario, para el recuperar contraseña
   const emailViejo = req.params.email
   const { name, password, email} = req.body
